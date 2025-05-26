@@ -7,21 +7,22 @@
 ```bash
 project-root/
 │
-├── data/                # 存放原始与清洗后的鲁迅全集文本
-│   ├── raw/            # 原始文本
-│   └── cleaned/        # 清洗后的文本
+├── data/        # 存放原始与清洗后的鲁迅全集文本
+│   ├── raw/        # 原始文本
+│   ├─── combined/        # 清洗、合并后的文本
+│   └── ...
 │
-├── src/                # 源代码目录
-│   ├── 0-preprocessing/    # 文本预处理模块
-│   ├── 1-word-statistics/  # 词频统计模块
-│   └── 2-passage-analysis/ # 段落分析模块
+├── src/        # 源代码目录
+│   ├── 0-preprocessing/        # 文本预处理模块
+│   ├── 1-word-statistics/        # 词频统计模块
+│   └── 2-passage-analysis/        # 段落分析模块
 │
-├── output/             # 分析结果输出目录
+├── output/        # 分析结果输出目录
 │
-├── font/              # 字体文件目录
+├── font/        # 字体文件目录
 │
-├── requirements.txt    # 项目依赖
-└── README.md          # 项目说明文件
+├── requirements.txt        # 项目依赖
+└── README.md        # 项目说明文件
 ```
 
 ## 主要功能
