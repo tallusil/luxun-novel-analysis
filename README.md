@@ -9,7 +9,7 @@ project-root/
 │
 ├── data/                # 存放原始与清洗后的鲁迅全集文本
 │   ├── raw/            # 原始文本
-│   └── cleaned/        # 清洗、分词后的文本
+│   └── cleaned/        # 清洗后的文本
 │
 ├── src/                # 源代码目录
 │   ├── 0-preprocessing/    # 文本预处理模块
@@ -27,31 +27,30 @@ project-root/
 ## 主要功能
 
 ### 1. 文本预处理
-- 文本清洗与规范化
+- 文本合并
+- 数据清洗与规范化
 - 中文分词处理
 - 停用词过滤
-- 文本格式统一化
 
 ### 2. 词频统计与分析
 - 高频词统计
 - 词云生成
 - 词性分析
-- 关键词提取
 
 ### 3. 段落分析
 - 段落结构分析
 - 文本特征提取
-- 写作风格分析
+- 人物关系网络可视化
 
 ## 技术栈
 
 - Python 3.8+
 - 核心依赖：
-  - jieba (中文分词)
-  - wordcloud (词云生成)
-  - pandas (数据处理)
-  - matplotlib (数据可视化)
-  - numpy (数值计算)
+  - jieba
+  - wordcloud
+  - networkx
+  - pandas
+  - matplotlib
 
 ## 快速开始
 
@@ -76,7 +75,7 @@ source .venv/bin/activate  # Linux/Mac
 pip install -r requirements.txt
 ```
 
-4. 运行分析
+4. 运行
 ```bash
 # 按顺序执行各个模块
 
@@ -92,8 +91,9 @@ python src/1-word-statistics/0-word_frequency.py
 分析结果将保存在 `output` 目录下，包括：
 - 词云图
 - 词频统计表
-- 文本分析报告
-- 可视化图表
+- 文本特征评价表
+- 篇章结构统计表
+- 人物关系网络图
 
 ## 许可证
 
