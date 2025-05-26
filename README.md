@@ -17,9 +17,6 @@ project-root/
 │   └── 2-passage-analysis/ # 段落分析模块
 │
 ├── output/             # 分析结果输出目录
-│   ├── wordclouds/     # 词云图
-│   ├── statistics/     # 统计数据
-│   └── visualizations/ # 可视化结果
 │
 ├── font/              # 字体文件目录
 │
