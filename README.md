@@ -2,46 +2,50 @@
 
 本项目对鲁迅全集进行了系统的数据清洗、文本分析和可视化展示。
 
-## 项目结构
+## 任务完成情况
 
-```bash
-project-root/
-│
-├── data/        # 存放原始与清洗后的鲁迅全集文本
-│   ├── raw/        # 原始文本
-│   ├─── combined/        # 清洗、合并后的文本
-│   └── ...
-│
-├── src/        # 源代码目录
-│   ├── 0-preprocessing/        # 文本预处理模块
-│   ├── 1-word-statistics/        # 词频统计模块
-│   └── 2-passage-analysis/        # 段落分析模块
-│
-├── output/        # 分析结果输出目录
-│
-├── font/        # 字体文件目录
-│
-├── requirements.txt        # 项目依赖
-└── README.md        # 项目说明文件
-```
+### 1. 基础任务
 
-## 主要功能
+#### 1) 小说选择与数据准备 ✓
+- 选取鲁迅小说作为分析对象 ✓
+- 数据存放：`data/raw/` 目录
+- 文本清洗与预处理 ✓
+  - 文本合并：`src/0-preprocessing/0-combiner.py`
+  - 数据清洗：`src/0-preprocessing/1-cleaner.py`
 
-### 1. 文本预处理
-- 文本合并
-- 数据清洗与规范化
-- 中文分词处理
-- 停用词过滤
+#### 2) 基础文本分析 ✓
+- 词频统计与分析 ✓
+  - 高频词统计：`src/1-word-statistics/0-word_frequency.py`
+- 情感分析 ✓
+  - 基础情感分析：`src/2-passage-analysis/2-sentiment-analysis.py`
+  - 情感趋势分析：`src/2-passage-analysis/4-sentiment-trend-analysis.py`
+- 人物识别 ✓
+  - 人物分析：`src/2-passage-analysis/1-character-analysis.py`
+- 章节结构分析 ✓
+  - 结构分析：`src/2-passage-analysis/0-structure-analysis.py`
 
-### 2. 词频统计与分析
-- 高频词统计
-- 词云生成
-- 词性分析
+#### 3) 可视化展示 ✓
+- 词云图 ✓
+  - 基础词云：`src/1-word-statistics/1-wordcloud_generator.py`
+  - 人物肖像词云：`src/1-word-statistics/2-luxun_portrait_wordcloud.py`
+- 词频统计图表 ✓
+  - 词频可视化：`src/3-addition/1-word-frequency-charts.py`
+- 情感变化趋势图 ✓
+  - 情感趋势图：`src/3-addition/2-sentiment-trend-charts.py`
+- 人物关系网络图 ✓
+  - 人物网络：`src/2-passage-analysis/3-character-network.py`
 
-### 3. 段落分析
-- 段落结构分析
-- 文本特征提取
-- 人物关系网络可视化
+### 2. 进阶任务
+
+#### 1) 主题与风格分析 ✓
+- 主题模型分析 ✓
+- 写作风格分析 ✓
+- 章节风格对比 ✓
+  - 实现文件：`src/3-addition/3-theme-style-analysis.py`
+
+分析结果输出目录：`output/`
+
+可视化所需字体文件：`font/`
 
 ## 技术栈
 
@@ -52,6 +56,7 @@ project-root/
   - networkx
   - pandas
   - matplotlib
+  - sklearn
 
 ## 快速开始
 
