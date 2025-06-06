@@ -20,6 +20,7 @@ from typing import List, Dict, Tuple
 import json
 from scipy import stats
 import warnings
+from pypinyin import lazy_pinyin, Style
 
 warnings.filterwarnings("ignore")
 
@@ -208,7 +209,8 @@ class ThemeStyleAnalyzer:
 
             # 创建词频分布
             word_freq = {
-                word: (len(top_words) - i) for i, word in enumerate(topic_words)
+                convert_to_pinyin(word): (len(top_words) - i)
+                for i, word in enumerate(topic_words)
             }
 
             # 绘制条形图
@@ -247,7 +249,9 @@ class ThemeStyleAnalyzer:
         ]
         ax1.bar(style_features.keys(), avg_lengths)
         ax1.set_title("Average Sentence Length")
-        ax1.set_xticklabels(style_features.keys(), rotation=45)
+        ax1.set_xticklabels(
+            [convert_to_pinyin(work) for work in style_features.keys()], rotation=45
+        )
 
         # 2. 词汇丰富度对比
         richness = [
@@ -255,7 +259,9 @@ class ThemeStyleAnalyzer:
         ]
         ax2.bar(style_features.keys(), richness)
         ax2.set_title("Vocabulary Richness")
-        ax2.set_xticklabels(style_features.keys(), rotation=45)
+        ax2.set_xticklabels(
+            [convert_to_pinyin(work) for work in style_features.keys()], rotation=45
+        )
 
         # 3. 词性分布热图
         pos_data = {}
@@ -280,7 +286,7 @@ class ThemeStyleAnalyzer:
             pos_matrix,
             ax=ax3,
             xticklabels=list(all_pos),
-            yticklabels=list(style_features.keys()),
+            yticklabels=[convert_to_pinyin(work) for work in style_features.keys()],
             cmap="YlOrRd",
         )
         ax3.set_title("POS Distribution")
@@ -292,8 +298,11 @@ class ThemeStyleAnalyzer:
         sns.heatmap(
             topic_matrix,
             ax=ax4,
-            xticklabels=[f"Topic {i+1}" for i in range(self.n_topics)],
-            yticklabels=list(style_features.keys()),
+            xticklabels=[
+                f"Topic {i+1} ({convert_to_pinyin(', '.join(self.get_top_words_per_topic()[i][:3]))})"
+                for i in range(self.n_topics)
+            ],
+            yticklabels=[convert_to_pinyin(work) for work in style_features.keys()],
             cmap="YlOrRd",
         )
         ax4.set_title("Topic Distribution")
@@ -387,6 +396,20 @@ def segment_text(text: str) -> List[str]:
         if len(w.strip()) > 0 and not w.strip() in '，。！？；：（）【】《》""'
     ]
     return words
+
+
+def convert_to_pinyin(text: str) -> str:
+    """
+    将中文文本转换为拼音
+    Args:
+        text: 中文文本
+    Returns:
+        拼音字符串
+    """
+    if not isinstance(text, str):
+        return str(text)
+    pinyin_list = lazy_pinyin(text, style=Style.NORMAL)
+    return " ".join(pinyin_list).title()
 
 
 def main():
